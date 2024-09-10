@@ -15,10 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let _ = DbHelper.shared.OpenDatabase()
-        let dirPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let dbPath = dirPaths[0]
-        print(dbPath)
+//        let _ = DbHelper.shared.OpenDatabase()
+//        let dirPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+//        let dbPath = dirPaths[0]
+//        print(dbPath)
         return true
     }
 
