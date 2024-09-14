@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectViewCell" id="KGk-i7-Jjw" customClass="ProjectViewCell" customModule="TaskManager" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ap7-Gt-ATJ">
+                        <rect key="frame" x="4" y="4" width="312" height="24"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1ff-ug-43z">
+                        <rect key="frame" x="8" y="58.666666666666657" width="32" height="35.333333333333343"/>
+                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="3ng-IX-jMa"/>
+                            <constraint firstAttribute="height" constant="32" id="wyB-n4-cxO"/>
+                        </constraints>
+                        <imageReference key="image" image="calendar" catalog="system" symbolScale="large"/>
+                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03/05/2025" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McF-sJ-tn8">
+                        <rect key="frame" x="44.000000000000007" y="65.666666666666671" width="76.666666666666686" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="1bu-XS-yAt"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryN-jA-wbu">
+                        <rect key="frame" x="270" y="49" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="2gl-jR-OHE">
+                        <rect key="frame" x="128.66666666666663" y="74" width="183.33333333333337" height="4"/>
+                    </progressView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="ryN-jA-wbu" secondAttribute="trailing" constant="8" id="0Eq-fz-sdH"/>
+                    <constraint firstItem="McF-sJ-tn8" firstAttribute="leading" secondItem="1ff-ug-43z" secondAttribute="trailing" constant="4" id="AIf-x4-32x"/>
+                    <constraint firstAttribute="trailing" secondItem="2gl-jR-OHE" secondAttribute="trailing" constant="8" id="DQc-ee-w2v"/>
+                    <constraint firstItem="Ap7-Gt-ATJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="FsT-Fs-0dr"/>
+                    <constraint firstItem="1ff-ug-43z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="MBd-GD-zze"/>
+                    <constraint firstItem="McF-sJ-tn8" firstAttribute="centerY" secondItem="1ff-ug-43z" secondAttribute="centerY" id="YJU-lY-Vfd"/>
+                    <constraint firstItem="2gl-jR-OHE" firstAttribute="top" secondItem="ryN-jA-wbu" secondAttribute="bottom" constant="4" id="ZyD-H6-7oV"/>
+                    <constraint firstItem="Ap7-Gt-ATJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="bUF-cX-LxR"/>
+                    <constraint firstItem="2gl-jR-OHE" firstAttribute="leading" secondItem="McF-sJ-tn8" secondAttribute="trailing" constant="8" id="hdS-gB-ZUD"/>
+                    <constraint firstAttribute="bottom" secondItem="1ff-ug-43z" secondAttribute="bottom" constant="8" id="uEw-1K-fOW"/>
+                    <constraint firstItem="2gl-jR-OHE" firstAttribute="centerY" secondItem="McF-sJ-tn8" secondAttribute="centerY" id="uiF-OY-jGE"/>
+                    <constraint firstAttribute="trailing" secondItem="Ap7-Gt-ATJ" secondAttribute="trailing" constant="4" id="yiG-tk-9E0"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="deadlineLabel" destination="McF-sJ-tn8" id="OcW-qQ-1LO"/>
+                <outlet property="nameLabel" destination="Ap7-Gt-ATJ" id="bL8-fl-Bey"/>
+                <outlet property="progressLabel" destination="ryN-jA-wbu" id="AKl-dt-GaU"/>
+                <outlet property="progressView" destination="2gl-jR-OHE" id="Vty-Vl-cQc"/>
+            </connections>
+            <point key="canvasLocation" x="56.488549618320612" y="20.422535211267608"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="calendar" catalog="system" width="128" height="107"/>
+    </resources>
+</document>

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41AB8D982C947B5D0005C839 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB8D972C947B5D0005C839 /* TaskListViewController.swift */; };
+		41AB8DA02C9496330005C839 /* ProjectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB8D9E2C9496330005C839 /* ProjectViewCell.swift */; };
+		41AB8DA12C9496330005C839 /* ProjectViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41AB8D9F2C9496330005C839 /* ProjectViewCell.xib */; };
+		41AB8DA32C949FC00005C839 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB8DA22C949FC00005C839 /* TabViewController.swift */; };
+		41AB8DA62C94A10F0005C839 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB8DA52C94A10F0005C839 /* CalendarHelper.swift */; };
+		41AB8DA82C94A14D0005C839 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB8DA72C94A14D0005C839 /* CalendarCell.swift */; };
 		41C568802C907B180071D8F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C5687F2C907B180071D8F5 /* AppDelegate.swift */; };
 		41C568822C907B180071D8F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C568812C907B180071D8F5 /* SceneDelegate.swift */; };
 		41C568842C907B180071D8F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C568832C907B180071D8F5 /* ViewController.swift */; };
@@ -22,6 +28,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		41AB8D972C947B5D0005C839 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
+		41AB8D9E2C9496330005C839 /* ProjectViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewCell.swift; sourceTree = "<group>"; };
+		41AB8D9F2C9496330005C839 /* ProjectViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectViewCell.xib; sourceTree = "<group>"; };
+		41AB8DA22C949FC00005C839 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		41AB8DA52C94A10F0005C839 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+		41AB8DA72C94A14D0005C839 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		41C5687C2C907B180071D8F5 /* TaskManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41C5687F2C907B180071D8F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41C568812C907B180071D8F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +61,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		41AB8D992C9493940005C839 /* ViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				41AB8D9E2C9496330005C839 /* ProjectViewCell.swift */,
+				41AB8D9F2C9496330005C839 /* ProjectViewCell.xib */,
+				41AB8DA72C94A14D0005C839 /* CalendarCell.swift */,
+			);
+			path = ViewCell;
+			sourceTree = "<group>";
+		};
+		41AB8DA42C94A0F50005C839 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				41AB8DA52C94A10F0005C839 /* CalendarHelper.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		41AFD1A32C953F2A009D88F6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				41C568832C907B180071D8F5 /* ViewController.swift */,
+				41AB8D972C947B5D0005C839 /* TaskListViewController.swift */,
+				41AB8DA22C949FC00005C839 /* TabViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		41C568732C907B180071D8F5 = {
 			isa = PBXGroup;
 			children = (
@@ -68,11 +108,13 @@
 		41C5687E2C907B180071D8F5 /* TaskManager */ = {
 			isa = PBXGroup;
 			children = (
+				41AFD1A32C953F2A009D88F6 /* ViewControllers */,
+				41AB8DA42C94A0F50005C839 /* Common */,
+				41AB8D992C9493940005C839 /* ViewCell */,
 				41C568982C9090C20071D8F5 /* Database */,
 				41C568932C9086AB0071D8F5 /* Models */,
 				41C5687F2C907B180071D8F5 /* AppDelegate.swift */,
 				41C568812C907B180071D8F5 /* SceneDelegate.swift */,
-				41C568832C907B180071D8F5 /* ViewController.swift */,
 				41C568852C907B180071D8F5 /* Main.storyboard */,
 				41C568882C907B1E0071D8F5 /* Assets.xcassets */,
 				41C5688A2C907B1E0071D8F5 /* LaunchScreen.storyboard */,
@@ -161,6 +203,7 @@
 			files = (
 				41C5688C2C907B1E0071D8F5 /* LaunchScreen.storyboard in Resources */,
 				41C568892C907B1E0071D8F5 /* Assets.xcassets in Resources */,
+				41AB8DA12C9496330005C839 /* ProjectViewCell.xib in Resources */,
 				41C568872C907B180071D8F5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,15 +215,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41AB8DA32C949FC00005C839 /* TabViewController.swift in Sources */,
+				41AB8DA82C94A14D0005C839 /* CalendarCell.swift in Sources */,
 				41C568842C907B180071D8F5 /* ViewController.swift in Sources */,
 				41C5689A2C9091030071D8F5 /* DbHelper.swift in Sources */,
 				41C5689E2C9094070071D8F5 /* TaskManager.swift in Sources */,
 				41C5689C2C9091B50071D8F5 /* SQLiteDatabase.swift in Sources */,
+				41AB8DA02C9496330005C839 /* ProjectViewCell.swift in Sources */,
 				41C568A02C90948D0071D8F5 /* ProjectManager.swift in Sources */,
+				41AB8DA62C94A10F0005C839 /* CalendarHelper.swift in Sources */,
 				41C568952C9086F10071D8F5 /* ProjectModel.swift in Sources */,
 				41C568972C908A7D0071D8F5 /* TaskModel.swift in Sources */,
 				41C568802C907B180071D8F5 /* AppDelegate.swift in Sources */,
 				41C568822C907B180071D8F5 /* SceneDelegate.swift in Sources */,
+				41AB8D982C947B5D0005C839 /* TaskListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
