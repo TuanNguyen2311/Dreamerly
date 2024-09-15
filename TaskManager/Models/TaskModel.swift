@@ -10,20 +10,16 @@ import Foundation
 enum TaskStatus: String {
     case None, Completed
 }
-enum TaskPriority: String {
-    case Low, Medium, Hight, Urgent
-}
+
 
 public class TaskModel {
-    var taskID:Int?
-    var description:String?
-    var status:TaskStatus?
-    var priority:TaskPriority?
+    var taskID:Int = -1
+    var description:String = ""
+    var status:TaskStatus = .None
     
-    init(taskID: Int? = -1, description: String, status: TaskStatus? = TaskStatus.None, priority: TaskPriority? = TaskPriority.Low) {
+    init(taskID: Int = -1, description: String, status: TaskStatus = TaskStatus.None) {
         self.taskID = taskID
         self.description = description
         self.status = status
-        self.priority = priority
     }
 }

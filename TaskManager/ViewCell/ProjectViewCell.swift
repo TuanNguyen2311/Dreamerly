@@ -27,8 +27,8 @@ class ProjectViewCell: UITableViewCell {
     func commonInit(_ projectModel: ProjectModel){
         nameLabel.text = projectModel.name
         progressView.progress = Float(projectModel.getPercentProcessing())
-        progressLabel.text = "\(projectModel.getPercentProcessing()*100)/100%"
-        deadlineLabel.text = projectModel.deadline
+        progressLabel.text = "\(projectModel.getPercentProcessing()*100) %"
+        deadlineLabel.text = projectModel.dateTo
     }
     
 }

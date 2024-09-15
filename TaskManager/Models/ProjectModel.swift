@@ -11,27 +11,37 @@ enum ProjectStatus: String {
     case Todo, Processing, Completed, Cancel
 }
 
+enum ProjectPriority: String {
+    case Low, Medium, High, Urgent
+}
+
 public class ProjectModel {
-    var prjID:Int?
-    var name:String?
-    var status:ProjectStatus?
-    var deadline:String?
-    var taskList:Array<TaskModel>?
+    var prjID:Int = -1
+    var name:String = ""
+    var status:ProjectStatus = .Todo
+    var dateFrom:String = ""
+    var dateTo:String = ""
+    var priority:ProjectPriority = .Low
+    var taskList:Array<TaskModel> = []
     
-    init(prjID: Int? = -1, name: String, status: ProjectStatus? = ProjectStatus.Todo, deadline: String, taskList: Array<TaskModel>? = nil) {
+    init(prjID: Int = -1, name: String, status: ProjectStatus = .Todo, dateFrom: String = Date().toString(Constants.dateFormatted_1), dateTo: String = Date().toString(Constants.dateFormatted_1), priority: ProjectPriority = .Low, taskList: Array<TaskModel> = []) {
         self.prjID = prjID
         self.name = name
         self.status = status
-        self.deadline = deadline
+        self.dateFrom = dateFrom
+        self.dateTo = dateTo
+        self.priority = priority
         self.taskList = taskList
     }
     
     func getPercentProcessing()->Double {
-        guard let taskList = taskList else {
+        if taskList.count == 0 {
             return 0
+        } else {
+            let countComplete = taskList.filter { $0.status == .Completed }.count
+            return Double(countComplete) / Double(taskList.count)
         }
-        let countComplete = taskList.filter { $0.status == .Completed }.count
-        return Double(countComplete) / Double(taskList.count)
+        
     }
     
 }

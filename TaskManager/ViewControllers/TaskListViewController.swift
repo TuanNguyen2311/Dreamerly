@@ -15,8 +15,6 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
     @IBOutlet weak var calendarButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     var projectArr:Array<ProjectModel> = []
-    
-    
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -31,7 +29,7 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         DispatchQueue.main.async {
-            self.chooseViewMode(mode: 1)
+            self.chooseViewMode(mode: 0)
             self.setupTableView()
             self.initProjectArr()
             self.setupCalendarView()
@@ -39,6 +37,14 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
             
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    
     /// 0: calendar
     /// 1: see all
     func chooseViewMode(mode: Int){
@@ -67,7 +73,7 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
         seeAllButton.isHidden = true
         seeAllButton.isEnabled = false
         calendarView.isHidden = true
-        changeHeight(newHeight: 0)
+        changeCalendarHeight(newHeight: 0)
     }
     
     func setupTableView(){
@@ -79,28 +85,20 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
     func initProjectArr(){
         let taskList1 = [TaskModel(description: "Task1", status: .Completed), TaskModel(description: "Task2"), TaskModel(description: "Task3"), TaskModel(description: "Task4"), TaskModel(description: "Task5"), TaskModel(description: "Task6"), TaskModel(description: "Task7"), TaskModel(description: "Task8")]
         let taskList2 = [TaskModel(description: "Task1", status: .Completed), TaskModel(description: "Task2", status: .Completed), TaskModel(description: "Task3", status: .Completed), TaskModel(description: "Task4"), TaskModel(description: "Task5"), TaskModel(description: "Task6"), TaskModel(description: "Task7"), TaskModel(description: "Task8")]
-        projectArr.append(ProjectModel(name: "Cưới vợ", deadline: "03-05-2025", taskList: taskList1))
-        projectArr.append(ProjectModel(name: "Mua nhà", deadline: "20-06-2026", taskList: taskList2))
-        projectArr.append(ProjectModel(name: "Trả hết nợ", deadline: "10-10-2028"))
-        projectArr.append(ProjectModel(name: "Mua xe", deadline: "12-12-2028"))
-        projectArr.append(ProjectModel(name: "Prj1", deadline: "12-12-2028"))
-        projectArr.append(ProjectModel(name: "Prj2", deadline: "12-12-2028"))
-        projectArr.append(ProjectModel(name: "Prj3", deadline: "12-12-2028"))
-        projectArr.append(ProjectModel(name: "Prj4", deadline: "12-12-2028"))
-        projectArr.append(ProjectModel(name: "Prj5", deadline: "12-12-2028"))
-        projectArr.append(ProjectModel(name: "Prj6", deadline: "12-12-2028"))
-        projectArr.append(ProjectModel(name: "Prj7", deadline: "12-12-2028"))
-        projectArr.append(ProjectModel(name: "Prj8", deadline: "12-12-2028"))
+        projectArr.append(ProjectModel(name: "Cưới vợ", taskList: taskList1))
+        projectArr.append(ProjectModel(name: "Mua nhà",  taskList: taskList2))
+        projectArr.append(ProjectModel(name: "Trả hết nợ"))
+        projectArr.append(ProjectModel(name: "Mua xe"))
+        projectArr.append(ProjectModel(name: "Prj1"))
     }
     
     func setupCalendarView(){
         setCellViews()
         setupSwipeCollection()
-        
     }
     
     
-    func changeHeight(newHeight: CGFloat) {
+    func changeCalendarHeight(newHeight: CGFloat) {
         if let heightConstraint = calendarView.constraints.first(where: { $0.firstAttribute == .height }) {
             heightConstraint.constant = newHeight
             UIView.animate(withDuration: 0.3) {
@@ -143,8 +141,10 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
         Array(repeating: "", count: totalCells - (startingSpaces + daysInMonth))
         monthLabel.text = "\(CalendarHelper().monthString(date: selectedDate)) \(CalendarHelper().yearString(date: selectedDate))"
         collectionView.reloadData()
-        changeHeight(newHeight: CGFloat(collectionViewHeight))
+        changeCalendarHeight(newHeight: CGFloat(collectionViewHeight))
     }
+    
+    
     func setupSwipeCollection(){
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
         swipeLeft.direction = .left
@@ -183,6 +183,23 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
         showCalendarMode()
     }
     
+    func openProjectDetail(_ project:ProjectModel?=nil) {
+        let projectDetailVC = ProjectDetailViewController()
+        projectDetailVC.modalPresentationStyle = .fullScreen
+        projectDetailVC.project = project
+        let navigationController = UINavigationController(rootViewController: projectDetailVC)
+        present(navigationController, animated: true, completion: nil)
+    }
+    
+    @IBAction func createProjectAC(_ sender: Any) {
+        openProjectDetail()
+//        let createProjectVC = ProjectDetailViewController()
+//        createProjectVC.modalPresentationStyle = .fullScreen
+//        let navigationController = UINavigationController(rootViewController: createProjectVC)
+//        present(navigationController, animated: true, completion: nil)
+    }
+    
+    
 }
 
 extension TaskListViewController {
@@ -200,12 +217,15 @@ extension TaskListViewController {
         let project = self.projectArr[indexPath.row]
         cell?.commonInit(project)
         return cell!
-        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        openProjectDetail(projectArr[indexPath.row])
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        totalSquares.count
+        return totalSquares.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
