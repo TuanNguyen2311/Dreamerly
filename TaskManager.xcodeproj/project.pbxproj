@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4135FBA52C97362A001AE156 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4135FBA42C97362A001AE156 /* ChartViewController.swift */; };
 		418EB9A92C9663EA00DC552D /* CalendarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418EB9A72C9663EA00DC552D /* CalendarViewCell.swift */; };
 		418EB9AA2C9663EA00DC552D /* CalendarViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 418EB9A82C9663EA00DC552D /* CalendarViewCell.xib */; };
 		418EB9AD2C9688C400DC552D /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418EB9AB2C9688C400DC552D /* TaskTableViewCell.swift */; };
@@ -36,7 +37,22 @@
 		41C568A02C90948D0071D8F5 /* ProjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C5689F2C90948D0071D8F5 /* ProjectManager.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4135FBB22C97407B001AE156 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		4135FBA42C97362A001AE156 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		4135FBAB2C973C2B001AE156 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = System/Library/Frameworks/Charts.framework; sourceTree = SDKROOT; };
 		418EB9A72C9663EA00DC552D /* CalendarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewCell.swift; sourceTree = "<group>"; };
 		418EB9A82C9663EA00DC552D /* CalendarViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewCell.xib; sourceTree = "<group>"; };
 		418EB9AB2C9688C400DC552D /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
@@ -79,6 +95,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4135FBAA2C973C2A001AE156 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4135FBAB2C973C2B001AE156 /* Charts.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		41AB8D992C9493940005C839 /* ViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +136,7 @@
 				41AB8DA22C949FC00005C839 /* TabViewController.swift */,
 				41AFD1AA2C95639B009D88F6 /* ProjectDetailViewController.swift */,
 				41AFD1AB2C95639B009D88F6 /* ProjectDetailViewController.xib */,
+				4135FBA42C97362A001AE156 /* ChartViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -121,6 +146,7 @@
 			children = (
 				41C5687E2C907B180071D8F5 /* TaskManager */,
 				41C5687D2C907B180071D8F5 /* Products */,
+				4135FBAA2C973C2A001AE156 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,12 +206,15 @@
 				41C568782C907B180071D8F5 /* Sources */,
 				41C568792C907B180071D8F5 /* Frameworks */,
 				41C5687A2C907B180071D8F5 /* Resources */,
+				4135FBB22C97407B001AE156 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = TaskManager;
+			packageProductDependencies = (
+			);
 			productName = TaskManager;
 			productReference = 41C5687C2C907B180071D8F5 /* TaskManager.app */;
 			productType = "com.apple.product-type.application";
@@ -214,6 +243,9 @@
 				Base,
 			);
 			mainGroup = 41C568732C907B180071D8F5;
+			packageReferences = (
+				4135FB9F2C973400001AE156 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = 41C5687D2C907B180071D8F5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -253,6 +285,7 @@
 				41C5689A2C9091030071D8F5 /* DbHelper.swift in Sources */,
 				418EB9B02C96C4D500DC552D /* GlobalManager.swift in Sources */,
 				418EB9A92C9663EA00DC552D /* CalendarViewCell.swift in Sources */,
+				4135FBA52C97362A001AE156 /* ChartViewController.swift in Sources */,
 				41C5689E2C9094070071D8F5 /* TaskManager.swift in Sources */,
 				41C5689C2C9091B50071D8F5 /* SQLiteDatabase.swift in Sources */,
 				41AB8DA02C9496330005C839 /* ProjectViewCell.swift in Sources */,
@@ -487,6 +520,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4135FB9F2C973400001AE156 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 41C568742C907B180071D8F5 /* Project object */;
 }

@@ -20,12 +20,12 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
     
     @IBOutlet weak var calendarView: UIView!
     @IBOutlet weak var todoNumLabel: UILabel!
-    @IBOutlet weak var processingNumLabel: UILabel!
+    @IBOutlet weak var inProgressNumLabel: UILabel!
     @IBOutlet weak var completedNumLabel: UILabel!
     @IBOutlet weak var cancelNumLabel: UILabel!
     
     @IBOutlet weak var todoView: UIView!
-    @IBOutlet weak var processingView: UIView!
+    @IBOutlet weak var inProgressView: UIView!
     @IBOutlet weak var completedView: UIView!
     @IBOutlet weak var cancelView: UIView!
     
@@ -75,8 +75,8 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
     func resetStatusViews(){
         todoView.backgroundColor = Constants.unselectedStatusColor
         todoView.layer.opacity = 20
-        processingView.backgroundColor = Constants.unselectedStatusColor
-        processingView.layer.opacity = 20
+        inProgressView.backgroundColor = Constants.unselectedStatusColor
+        inProgressView.layer.opacity = 20
         completedView.backgroundColor = Constants.unselectedStatusColor
         completedView.layer.opacity = 20
         cancelView.backgroundColor = Constants.unselectedStatusColor
@@ -91,8 +91,8 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
             case .Todo:
                 todoView.backgroundColor = Constants.selectedStatusColor
                 break
-            case .Processing:
-                processingView.backgroundColor = Constants.selectedStatusColor
+            case .InProgress:
+                inProgressView.backgroundColor = Constants.selectedStatusColor
                 break
             case .Completed:
                 completedView.backgroundColor = Constants.selectedStatusColor
@@ -123,7 +123,7 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
     
     func updateStatusSumary(todoNum:Int, processingNum:Int, completedNum:Int, cancelNum:Int){
         todoNumLabel.text = String(todoNum)
-        processingNumLabel.text = String(processingNum)
+        inProgressNumLabel.text = String(processingNum)
         completedNumLabel.text = String(completedNum)
         cancelNumLabel.text = String(cancelNum)
     }
@@ -267,9 +267,9 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
         openProjectDetail()
     }
     
-    @IBAction func processingFilterAC(_ sender: Any) {
-        if currentStatus != .Processing {
-            currentStatus = .Processing
+    @IBAction func inProgressFilterAC(_ sender: Any) {
+        if currentStatus != .InProgress {
+            currentStatus = .InProgress
         } else {
             currentStatus = nil
         }

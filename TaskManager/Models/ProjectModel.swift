@@ -8,7 +8,7 @@
 import Foundation
 
 enum ProjectStatus: String {
-    case Todo, Processing, Completed, Cancel
+    case Todo, InProgress, Completed, Cancel
 }
 
 enum ProjectPriority: String {
@@ -34,6 +34,8 @@ public class ProjectModel {
         self.taskList = taskList
     }
     
+    
+    
     func updateStatus(){
         guard let from = dateFrom.toDate(Constants.dateFormatted_1),
                   let to = dateFrom.toDate(Constants.dateFormatted_1) else {
@@ -44,7 +46,7 @@ public class ProjectModel {
         let today = Date()
         if percent == 0 {
             if today >= from && today <= to {
-                status = .Processing
+                status = .InProgress
             } else if today > to {
                 status = .Cancel
             } else if today < from {
@@ -52,11 +54,11 @@ public class ProjectModel {
             }
         } else if percent < 100 {
             if today >= from && today <= to {
-                status = .Processing
+                status = .InProgress
             } else if today > to {
                 status = .Cancel
             } else if today < from {
-                status = .Processing
+                status = .InProgress
             }
         } else {
             status = .Completed

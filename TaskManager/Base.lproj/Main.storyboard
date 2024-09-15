@@ -77,7 +77,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YLE-H2-IZJ">
                                                                 <rect key="frame" x="4" y="0.0" width="144" height="50"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Processing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkH-HV-XX0">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="InProgress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkH-HV-XX0">
                                                                         <rect key="frame" x="0.0" y="0.0" width="85" height="50"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="85" id="Ggi-tu-ZVq"/>
@@ -127,7 +127,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <action selector="processingFilterAC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2hw-pY-TAc"/>
+                                                                    <action selector="inProgressFilterAC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2hw-pY-TAc"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -636,9 +636,9 @@
                         <outlet property="collectionView" destination="kgw-Fu-8bk" id="juX-mP-noX"/>
                         <outlet property="completedNumLabel" destination="Ul0-0v-Amb" id="kj1-Nf-ESr"/>
                         <outlet property="completedView" destination="BMa-an-Fcf" id="X2v-pd-mU5"/>
+                        <outlet property="inProgressNumLabel" destination="uoT-qK-Rza" id="D9i-TJ-hDF"/>
+                        <outlet property="inProgressView" destination="XXV-3h-7qP" id="HI0-9X-0TZ"/>
                         <outlet property="monthLabel" destination="17U-3R-dSl" id="CfV-az-6ch"/>
-                        <outlet property="processingNumLabel" destination="uoT-qK-Rza" id="D9i-TJ-hDF"/>
-                        <outlet property="processingView" destination="XXV-3h-7qP" id="HI0-9X-0TZ"/>
                         <outlet property="seeAllButton" destination="Uuo-tl-Z5w" id="0ip-JW-LYb"/>
                         <outlet property="tableView" destination="qUJ-53-47m" id="BPe-wv-5vT"/>
                         <outlet property="todoNumLabel" destination="xnp-9i-par" id="tTI-XA-2Ld"/>
@@ -652,26 +652,31 @@
         <!--Biểu đồ-->
         <scene sceneID="dsh-rv-obK">
             <objects>
-                <viewController id="jB1-qS-9Q6" sceneMemberID="viewController">
+                <viewController id="jB1-qS-9Q6" customClass="ChartViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CcM-hy-Gxl">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming soon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Skn-y5-oMe">
-                                <rect key="frame" x="100.00000000000001" y="405.66666666666669" width="193.33333333333337" height="40.666666666666686"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSX-xQ-9X1" customClass="PieChartView" customModule="DGCharts">
+                                <rect key="frame" x="8" y="284.66666666666663" width="377" height="282.66666666666663"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="lSX-xQ-9X1" secondAttribute="height" multiplier="4:3" id="t8A-bS-4dg"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JSc-Bd-Iy5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Skn-y5-oMe" firstAttribute="centerY" secondItem="CcM-hy-Gxl" secondAttribute="centerY" id="9v8-cX-mVh"/>
-                            <constraint firstItem="Skn-y5-oMe" firstAttribute="centerX" secondItem="CcM-hy-Gxl" secondAttribute="centerX" id="faq-ig-bKj"/>
+                            <constraint firstItem="lSX-xQ-9X1" firstAttribute="leading" secondItem="JSc-Bd-Iy5" secondAttribute="leading" constant="8" id="4OC-dn-b8t"/>
+                            <constraint firstItem="lSX-xQ-9X1" firstAttribute="centerY" secondItem="CcM-hy-Gxl" secondAttribute="centerY" id="8Am-lQ-p21"/>
+                            <constraint firstItem="JSc-Bd-Iy5" firstAttribute="trailing" secondItem="lSX-xQ-9X1" secondAttribute="trailing" constant="8" id="SDs-Se-XVs"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Biểu đồ" image="chart.xyaxis.line" catalog="system" id="5tw-qn-rym"/>
+                    <connections>
+                        <outlet property="pieChartView" destination="lSX-xQ-9X1" id="JHL-5C-Piv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHj-vr-NPx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

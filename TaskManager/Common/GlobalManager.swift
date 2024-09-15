@@ -41,7 +41,7 @@ class GlobalManager {
                 if status == nil {
                     if project.status == .Todo {
                         todoNum += 1
-                    } else if project.status == .Processing {
+                    } else if project.status == .InProgress {
                         processingNum += 1
                     } else if project.status == .Completed {
                         completedNum += 1
@@ -53,7 +53,7 @@ class GlobalManager {
                     if status == project.status {
                         if project.status == .Todo {
                             todoNum += 1
-                        } else if project.status == .Processing {
+                        } else if project.status == .InProgress {
                             processingNum += 1
                         } else if project.status == .Completed {
                             completedNum += 1
@@ -84,7 +84,7 @@ class GlobalManager {
             if status == nil {
                 if project.status == .Todo {
                     todoNum += 1
-                } else if project.status == .Processing {
+                } else if project.status == .InProgress {
                     processingNum += 1
                 } else if project.status == .Completed {
                     completedNum += 1
@@ -96,7 +96,7 @@ class GlobalManager {
                 if status == project.status {
                     if project.status == .Todo {
                         todoNum += 1
-                    } else if project.status == .Processing {
+                    } else if project.status == .InProgress {
                         processingNum += 1
                     } else if project.status == .Completed {
                         completedNum += 1
@@ -167,7 +167,7 @@ class GlobalManager {
         case 0:
             return .Todo
         case 1:
-            return .Processing
+            return .InProgress
         case 2:
             return .Completed
         case 3:
