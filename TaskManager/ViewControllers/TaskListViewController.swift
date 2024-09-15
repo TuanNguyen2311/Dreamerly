@@ -19,61 +19,140 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var calendarView: UIView!
+    @IBOutlet weak var todoNumLabel: UILabel!
+    @IBOutlet weak var processingNumLabel: UILabel!
+    @IBOutlet weak var completedNumLabel: UILabel!
+    @IBOutlet weak var cancelNumLabel: UILabel!
+    
+    @IBOutlet weak var todoView: UIView!
+    @IBOutlet weak var processingView: UIView!
+    @IBOutlet weak var completedView: UIView!
+    @IBOutlet weak var cancelView: UIView!
+    
+    
+    
     
     var selectedDate = Date()
+    var selectedDateStr = ""
     var totalSquares = [String]()
     var selectedIndex = -1
     var collectionViewHeight = 0
+    var isShowAll = false
+    var currentStatus:ProjectStatus?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         DispatchQueue.main.async {
-            self.chooseViewMode(mode: 0)
-            self.setupTableView()
-            self.initProjectArr()
+            self.showCalendarMode()
             self.setupCalendarView()
-            self.tableView.reloadData()
-            
+            self.setupTableView()
         }
     }
+    
+
     override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name(rawValue: Constants.ReloadDataNotification), object: nil)
+        
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: Constants.ReloadDataNotification), object: nil)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-    
-    /// 0: calendar
-    /// 1: see all
-    func chooseViewMode(mode: Int){
-        switch mode {
-        case 0:
-            showCalendarMode()
-            break
-        default: 
-            showAllMode()
-            break
+    @objc func reloadData() {
+        if GlobalManager.shared.isReloadData {
+            if isShowAll {
+                displayData(status: currentStatus)
+            } else {
+                displayData(byDate: selectedDateStr,status: currentStatus)
+            }
+            GlobalManager.shared.isReloadData = false
         }
     }
     
+    func resetStatusViews(){
+        todoView.backgroundColor = Constants.unselectedStatusColor
+        todoView.layer.opacity = 20
+        processingView.backgroundColor = Constants.unselectedStatusColor
+        processingView.layer.opacity = 20
+        completedView.backgroundColor = Constants.unselectedStatusColor
+        completedView.layer.opacity = 20
+        cancelView.backgroundColor = Constants.unselectedStatusColor
+        cancelView.layer.opacity = 20
+    }
+    
+    func setColorForSelectedStatus(status:ProjectStatus?=nil){
+        resetStatusViews()
+        if status == nil {return}
+        else {
+            switch status {
+            case .Todo:
+                todoView.backgroundColor = Constants.selectedStatusColor
+                break
+            case .Processing:
+                processingView.backgroundColor = Constants.selectedStatusColor
+                break
+            case .Completed:
+                completedView.backgroundColor = Constants.selectedStatusColor
+                break
+            case .Cancel:
+                cancelView.backgroundColor = Constants.selectedStatusColor
+                break
+            default:break
+            }
+        }
+    }
+    
+    func displayData(byDate:String="", status:ProjectStatus?=nil){
+        var data:(Array<ProjectModel>, Int, Int, Int, Int)!
+        if byDate == ""{//get all
+            data = GlobalManager.shared.getDatabase(status: status)
+        } else {
+            data = GlobalManager.shared.getDatabaseByDate(dateFrom: byDate, status: status)
+        }
+        projectArr = data.0
+        DispatchQueue.main.async {
+            if status == nil {
+                self.updateStatusSumary(todoNum: data.1, processingNum: data.2, completedNum: data.3, cancelNum: data.4)
+            }
+            self.tableView.reloadData()
+        }
+    }
+    
+    func updateStatusSumary(todoNum:Int, processingNum:Int, completedNum:Int, cancelNum:Int){
+        todoNumLabel.text = String(todoNum)
+        processingNumLabel.text = String(processingNum)
+        completedNumLabel.text = String(completedNum)
+        cancelNumLabel.text = String(cancelNum)
+    }
+    
     func showCalendarMode(){
+        currentStatus = nil
+        resetStatusViews()
+        isShowAll = false
         seeAllButton.isHidden = false
         seeAllButton.isEnabled = true
         calendarButton.isHidden = true
         calendarButton.isEnabled = false
         calendarView.isHidden = false
         setMonthView()
+        selectedDateStr = selectedDate.toString()
+        self.displayData(byDate: self.selectedDateStr)
     }
     
     func showAllMode(){
+        currentStatus = nil
+        resetStatusViews()
+        isShowAll = true
         calendarButton.isHidden = false
         calendarButton.isEnabled = true
         seeAllButton.isHidden = true
         seeAllButton.isEnabled = false
         calendarView.isHidden = true
         changeCalendarHeight(newHeight: 0)
+        self.displayData()
     }
     
     func setupTableView(){
@@ -82,15 +161,6 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
         tableView.separatorInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
     }
     
-    func initProjectArr(){
-        let taskList1 = [TaskModel(description: "Task1", status: .Completed), TaskModel(description: "Task2"), TaskModel(description: "Task3"), TaskModel(description: "Task4"), TaskModel(description: "Task5"), TaskModel(description: "Task6"), TaskModel(description: "Task7"), TaskModel(description: "Task8")]
-        let taskList2 = [TaskModel(description: "Task1", status: .Completed), TaskModel(description: "Task2", status: .Completed), TaskModel(description: "Task3", status: .Completed), TaskModel(description: "Task4"), TaskModel(description: "Task5"), TaskModel(description: "Task6"), TaskModel(description: "Task7"), TaskModel(description: "Task8")]
-        projectArr.append(ProjectModel(name: "Cưới vợ", taskList: taskList1))
-        projectArr.append(ProjectModel(name: "Mua nhà",  taskList: taskList2))
-        projectArr.append(ProjectModel(name: "Trả hết nợ"))
-        projectArr.append(ProjectModel(name: "Mua xe"))
-        projectArr.append(ProjectModel(name: "Prj1"))
-    }
     
     func setupCalendarView(){
         setCellViews()
@@ -105,7 +175,7 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
                 self.view.layoutIfNeeded()
             }
         }
-        }
+    }
     func setCellViews() {
         let width = (collectionView.frame.size.width - 2)/8
         let height = (collectionView.frame.size.width - 2)/8
@@ -140,10 +210,20 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
         Array(1...daysInMonth).map { String($0) } +
         Array(repeating: "", count: totalCells - (startingSpaces + daysInMonth))
         monthLabel.text = "\(CalendarHelper().monthString(date: selectedDate)) \(CalendarHelper().yearString(date: selectedDate))"
+        
+        selectedIndex = CalendarHelper().getSelectedIndex(selectedMonth: selectedDate, compareDate: selectedDateStr)
         collectionView.reloadData()
         changeCalendarHeight(newHeight: CGFloat(collectionViewHeight))
     }
     
+    func openProjectDetail(_ project:ProjectModel?=nil, _ projectIndex:Int = -1) {
+        let projectDetailVC = ProjectDetailViewController()
+        projectDetailVC.modalPresentationStyle = .fullScreen
+        projectDetailVC.project = project
+        projectDetailVC.projectIndex = projectIndex
+        let navigationController = UINavigationController(rootViewController: projectDetailVC)
+        present(navigationController, animated: true, completion: nil)
+    }
     
     func setupSwipeCollection(){
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
@@ -156,7 +236,7 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
     }
     
     @IBAction func seeAllAC(_ sender: Any) {
-        chooseViewMode(mode: 1)
+        showAllMode()
     }
     
     
@@ -183,22 +263,51 @@ class TaskListViewController:UIViewController , UITableViewDelegate, UITableView
         showCalendarMode()
     }
     
-    func openProjectDetail(_ project:ProjectModel?=nil) {
-        let projectDetailVC = ProjectDetailViewController()
-        projectDetailVC.modalPresentationStyle = .fullScreen
-        projectDetailVC.project = project
-        let navigationController = UINavigationController(rootViewController: projectDetailVC)
-        present(navigationController, animated: true, completion: nil)
-    }
-    
     @IBAction func createProjectAC(_ sender: Any) {
         openProjectDetail()
-//        let createProjectVC = ProjectDetailViewController()
-//        createProjectVC.modalPresentationStyle = .fullScreen
-//        let navigationController = UINavigationController(rootViewController: createProjectVC)
-//        present(navigationController, animated: true, completion: nil)
     }
     
+    @IBAction func processingFilterAC(_ sender: Any) {
+        if currentStatus != .Processing {
+            currentStatus = .Processing
+        } else {
+            currentStatus = nil
+        }
+        filterDataByStatus(status: currentStatus)
+    }
+    @IBAction func todoFilterAC(_ sender: Any) {
+        if currentStatus != .Todo {
+            currentStatus = .Todo
+        } else {
+            currentStatus = nil
+        }
+        filterDataByStatus(status: currentStatus)
+    }
+    @IBAction func completedFilterAC(_ sender: Any) {
+        if currentStatus != .Completed {
+            currentStatus = .Completed
+        } else {
+            currentStatus = nil
+        }
+        filterDataByStatus(status: currentStatus)
+    }
+    @IBAction func cancelFilterAC(_ sender: Any) {
+        if currentStatus != .Cancel {
+            currentStatus = .Cancel
+        } else {
+            currentStatus = nil
+        }
+        filterDataByStatus(status: currentStatus)
+    }
+    
+    func filterDataByStatus(status:ProjectStatus?=nil){
+        setColorForSelectedStatus(status: status)
+        if isShowAll {
+            displayData(status: status)
+        } else {
+            displayData(byDate: selectedDateStr, status: status)
+        }
+    }
     
 }
 
@@ -220,8 +329,23 @@ extension TaskListViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        openProjectDetail(projectArr[indexPath.row])
+        openProjectDetail(projectArr[indexPath.row], indexPath.row)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                let deletedProject = projectArr[indexPath.row]
+                projectArr.remove(at: indexPath.row)
+                GlobalManager.shared.deleteProject(projectDeleted: deletedProject)
+                tableView.reloadData()
+                
+            }
+        }
+        
+        // Thêm tiêu đề cho nút swipe (mặc định là "Delete")
+        func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+            return "Delete"
+        }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -243,6 +367,8 @@ extension TaskListViewController {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let previousIndex = selectedIndex
         selectedIndex = (selectedIndex == indexPath.item) ? -1 : indexPath.item
+        let cellValue = totalSquares[indexPath.row]
+        if cellValue == "" {return}
         
         var indexPaths = [IndexPath]()
         if previousIndex >= 0 {
@@ -252,6 +378,13 @@ extension TaskListViewController {
             indexPaths.append(IndexPath(item: selectedIndex, section: 0))
         }
         
+        let monthYear = selectedDate.toString(Constants.dateFormatted_2)
+        let dateFormatted3 = "\(cellValue) \(monthYear)"
+        let dateStr = "\(dateFormatted3.convertFormat(Constants.dateFormatted_3, Constants.dateFormatted_1))"
+        selectedDateStr = dateStr
+        displayData(byDate: selectedDateStr)
+        currentStatus = nil
+        resetStatusViews()
         collectionView.reloadItems(at: indexPaths)
     }
 }

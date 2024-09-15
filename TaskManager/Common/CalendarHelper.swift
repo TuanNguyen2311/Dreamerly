@@ -30,6 +30,10 @@ class CalendarHelper {
         let range = calendar.range(of: .day, in: .month, for: date)!
         return range.count
     }
+    func month(date:Date) -> Int {
+        let components = calendar.dateComponents([.month], from: date)
+        return components.month!
+    }
     func dayOfMonth(date:Date) -> Int {
         let components = calendar.dateComponents([.day], from: date)
         return components.day!
@@ -41,6 +45,21 @@ class CalendarHelper {
     func weekDay(date:Date) -> Int {
         let components = calendar.dateComponents([.weekday], from: date)
         return components.weekday!-1
+    }
+    
+    func getSelectedIndex(selectedMonth:Date, compareDate:String)->Int {
+        let selectedMonthInt = month(date: selectedMonth)
+        let projectMonthInt = month(date: compareDate.toDate(Constants.dateFormatted_1) ?? Date())
+        let projectDayInt = dayOfMonth(date: compareDate.toDate(Constants.dateFormatted_1) ?? Date())
+        if selectedMonthInt != projectMonthInt {
+            return -1
+        } else {
+            let projectDayInt = dayOfMonth(date: compareDate.toDate(Constants.dateFormatted_1) ?? Date())
+            
+            let firstDayOfMonth = firstOfMonth(date: selectedMonth)
+            let startingSpaces = weekDay(date: firstDayOfMonth)
+            return startingSpaces + projectDayInt - 1
+        }
     }
     
 }

@@ -17,7 +17,13 @@ struct Constants {
     static let noneStatusColor:UIColor = UIColor(hex: "#FF4455")
     static let completedStatusColor:UIColor = UIColor(hex: "#2FBC84")
     
+    static let selectedStatusColor:UIColor = UIColor(hex: "#D4C196")
+    static let unselectedStatusColor:UIColor = UIColor(hex: "#ADC8D1")
+    
     static let dateFormatted_1 = "yyyy/MM/dd"
     static let dateFormatted_2 = "LLL yyyy"
     static let dateFormatted_3 = "dd LLL yyyy"
+    
+    
+    static let ReloadDataNotification = "ReloadDataNotification"
 }

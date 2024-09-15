@@ -34,12 +34,47 @@ public class ProjectModel {
         self.taskList = taskList
     }
     
-    func getPercentProcessing()->Double {
+    func updateStatus(){
+        guard let from = dateFrom.toDate(Constants.dateFormatted_1),
+                  let to = dateFrom.toDate(Constants.dateFormatted_1) else {
+                return // Trả về 0 nếu có lỗi định dạng
+            }
+        
+        let percent = getPercentProcessing()
+        let today = Date()
+        if percent == 0 {
+            if today >= from && today <= to {
+                status = .Processing
+            } else if today > to {
+                status = .Cancel
+            } else if today < from {
+                status = .Todo
+            }
+        } else if percent < 100 {
+            if today >= from && today <= to {
+                status = .Processing
+            } else if today > to {
+                status = .Cancel
+            } else if today < from {
+                status = .Processing
+            }
+        } else {
+            status = .Completed
+        }
+        
+    }
+    
+    func getPercentProcessing()->Int {
         if taskList.count == 0 {
             return 0
         } else {
             let countComplete = taskList.filter { $0.status == .Completed }.count
-            return Double(countComplete) / Double(taskList.count)
+            print("countComplete:\(countComplete)__taskList:\(taskList.count)")
+            let result = Double(countComplete) / Double(taskList.count)
+
+            let formattedResult = Double(String(format: "%.2f", result)) ?? 0
+
+            return Int(formattedResult*100)
         }
         
     }

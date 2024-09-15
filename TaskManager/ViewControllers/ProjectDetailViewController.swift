@@ -46,10 +46,10 @@ class ProjectDetailViewController: UIViewController, UITextFieldDelegate, UIColl
     
     @IBOutlet weak var taskTableView: UITableView!
     
-    
+    var projectIndex = -1
     var project:ProjectModel?
     var projectActionMode:ActionMode?
-    var taskActionMode:ActionMode?
+    var taskActionMode:ActionMode = .Create
     var priorityHeight = priorityMinHeight
     var calendarFromHeight = 0
     var calendarToHeight = 0
@@ -203,6 +203,10 @@ class ProjectDetailViewController: UIViewController, UITextFieldDelegate, UIColl
         
     }
     
+    
+    
+    
+    
     func setMonthView(_ collectionView:UICollectionView){
         let isDateFrom = collectionView == collectionViewFrom
         
@@ -224,11 +228,12 @@ class ProjectDetailViewController: UIViewController, UITextFieldDelegate, UIColl
             Array(repeating: "", count: totalCells - (startingSpaces + daysInMonth))
         }
         
-        
         if isDateFrom {
             monthFromLabel.text = selectedDateFrom.toString(Constants.dateFormatted_2)
+            selectedIndexDateFrom = CalendarHelper().getSelectedIndex(selectedMonth: selectedDateFrom, compareDate: project?.dateFrom ?? Date().toString())
         } else {
             monthToLabel.text = selectedDateTo.toString(Constants.dateFormatted_2)
+            selectedIndexDateTo = CalendarHelper().getSelectedIndex(selectedMonth: selectedDateTo, compareDate: project?.dateTo ?? Date().toString())
         }
         collectionView.reloadData()
         changeCalendarHeight(newHeight: CGFloat(isDateFrom ? calendarFromHeight:calendarToHeight), calendarView: isDateFrom ? calendarFromView:calendarToView)
@@ -265,22 +270,6 @@ class ProjectDetailViewController: UIViewController, UITextFieldDelegate, UIColl
         } else {
             nextMonthToAC(self)
         }
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let activeTextField = self.taskNameTextField else {
-            return
-        }
-        
-        // Tính toán frame của UITextField trong coordinate system của scrollView
-        let textFieldFrame = scrollView.convert(activeTextField.frame, from: activeTextField.superview)
-        let textFieldY = textFieldFrame.origin.y
-        activeTextField.resignFirstResponder()
-        // Kiểm tra xem UITextField có bị che khuất bởi cuộn không
-//        if !scrollView.bounds.contains(textFieldFrame) {
-//            // Ẩn keyboard nếu UITextField bị che khuất
-//            activeTextField.resignFirstResponder()
-//        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -382,7 +371,7 @@ class ProjectDetailViewController: UIViewController, UITextFieldDelegate, UIColl
         }
         let projectName = textField.text
         project!.name = projectName ?? ""
-        submitButton.isEnabled = textField.text == ""
+        submitButton.isEnabled = !(textField.text == "")
     }
     @objc func taskTextFieldDidChange(_ textField: UITextField) {
         taskSubmitButton.isEnabled = !(textField.text == "")
@@ -406,6 +395,17 @@ class ProjectDetailViewController: UIViewController, UITextFieldDelegate, UIColl
     }
     
     @IBAction func submitAC(_ sender: Any) {
+        guard let projectData = project else {
+            return
+        }
+        projectData.updateStatus()
+        GlobalManager.shared.isReloadData = true
+        if projectActionMode == .Create {
+            GlobalManager.shared.appendProject(project: projectData)
+        } else {
+            GlobalManager.shared.updateProject(projectUpdated: projectData)
+        }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.ReloadDataNotification), object: nil)
         self.dismiss(animated: true)
     }
     
@@ -436,6 +436,7 @@ class ProjectDetailViewController: UIViewController, UITextFieldDelegate, UIColl
     @IBAction func calendarFromAC(_ sender: Any) {
         dateFromButton.setTitleColor(calendarFromHeight == 0 ? .red:.black, for: .normal)
         if calendarFromHeight == 0 {
+            selectedDateFrom = project?.dateFrom.toDate(Constants.dateFormatted_1) ?? Date()
             setMonthView(collectionViewFrom)
         } else {
             calendarFromHeight = 0
@@ -446,6 +447,7 @@ class ProjectDetailViewController: UIViewController, UITextFieldDelegate, UIColl
     @IBAction func calendarToAC(_ sender: Any) {
         dateToButton.setTitleColor(calendarToHeight == 0 ? .red:.black, for: .normal)
         if calendarToHeight == 0 {
+            selectedDateTo = project?.dateTo.toDate(Constants.dateFormatted_1) ?? Date()
             setMonthView(collectionViewTo)
         } else {
             calendarToHeight = 0
@@ -461,7 +463,7 @@ class ProjectDetailViewController: UIViewController, UITextFieldDelegate, UIColl
     
     @IBAction func nextMonthFromAC(_ sender: Any) {
         selectedIndexDateFrom = -1
-        selectedDateFrom = CalendarHelper().minusMonth(date: selectedDateFrom)
+        selectedDateFrom = CalendarHelper().plusMonth(date: selectedDateFrom)
         setMonthView(collectionViewFrom)
     }
     
@@ -473,7 +475,7 @@ class ProjectDetailViewController: UIViewController, UITextFieldDelegate, UIColl
     
     @IBAction func nextMonthToAC(_ sender: Any) {
         selectedIndexDateTo = -1
-        selectedDateTo = CalendarHelper().minusMonth(date: selectedDateTo)
+        selectedDateTo = CalendarHelper().plusMonth(date: selectedDateTo)
         setMonthView(collectionViewTo)
     }
     
@@ -486,7 +488,9 @@ class ProjectDetailViewController: UIViewController, UITextFieldDelegate, UIColl
                 project?.taskList[selectedIndexTask].description = taskContent
             }
         }
+        taskTableView.reloadData()
         taskNameTextField.text = ""
+        taskNameTextField.resignFirstResponder()
     }
     @IBAction func taskCancelAC(_ sender: Any) {
         taskCancelButton.isEnabled = false
@@ -548,14 +552,18 @@ extension ProjectDetailViewController {
             if selectedIndexDateFrom >= 0 {
                 let monthYear = selectedDateFrom.toString(Constants.dateFormatted_2)
                 let dateFormatted3 = "\(cellValue) \(monthYear)"
-                dateFromButton.setTitle("\(dateFormatted3.convertFormat(Constants.dateFormatted_3, Constants.dateFormatted_1))", for: .normal)
+                let dateStr = "\(dateFormatted3.convertFormat(Constants.dateFormatted_3, Constants.dateFormatted_1))"
+                dateFromButton.setTitle(dateStr, for: .normal)
+                project?.dateFrom = dateStr
                 indexPaths.append(IndexPath(item: selectedIndexDateFrom, section: 0))
             }
         } else {
             if selectedIndexDateTo >= 0 {
-                let monthYear = selectedDateFrom.toString(Constants.dateFormatted_2)
+                let monthYear = selectedDateTo.toString(Constants.dateFormatted_2)
                 let dateFormatted3 = "\(cellValue) \(monthYear)"
-                dateToButton.setTitle("\(dateFormatted3.convertFormat(Constants.dateFormatted_3, Constants.dateFormatted_1))", for: .normal)
+                let dateStr = "\(dateFormatted3.convertFormat(Constants.dateFormatted_3, Constants.dateFormatted_1))"
+                dateToButton.setTitle(dateStr, for: .normal)
+                project?.dateTo = dateStr
                 indexPaths.append(IndexPath(item: selectedIndexDateTo, section: 0))
             }
         }

@@ -126,9 +126,12 @@
                                                                         <integer key="value" value="10"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="processingFilterAC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2hw-pY-TAc"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.67806583840577273" green="0.78432357893952775" blue="0.82023007107764179" alpha="0.21757579985119047" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="backgroundColor" red="0.67843137254901964" green="0.78431372549019607" blue="0.81960784313725488" alpha="0.27326228342899661" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="7b1-oW-GRa" secondAttribute="bottom" id="3yR-vE-Xht"/>
                                                             <constraint firstItem="YLE-H2-IZJ" firstAttribute="top" secondItem="XXV-3h-7qP" secondAttribute="top" id="5NZ-s3-R8i"/>
@@ -199,9 +202,12 @@
                                                                         <integer key="value" value="10"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="todoFilterAC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tzg-r1-58N"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.67806583840577273" green="0.78432357893952775" blue="0.82023007107764179" alpha="0.21757579985119047" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="backgroundColor" red="0.67843137254901964" green="0.78431372549019607" blue="0.81960784313725488" alpha="0.27326228342899661" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="gDb-sx-W5B" secondAttribute="bottom" id="4xw-gB-bTy"/>
                                                             <constraint firstAttribute="bottom" secondItem="828-jD-rRF" secondAttribute="bottom" id="Kye-DM-vsd"/>
@@ -272,9 +278,12 @@
                                                                         <integer key="value" value="10"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="completedFilterAC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VDY-aK-3BX"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.67806583840577273" green="0.78432357893952775" blue="0.82023007107764179" alpha="0.21757579985119047" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="backgroundColor" red="0.67843137254901964" green="0.78431372549019607" blue="0.81960784313725488" alpha="0.27326228342899661" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
                                                             <constraint firstItem="jEl-9e-gqo" firstAttribute="leading" secondItem="BMa-an-Fcf" secondAttribute="leading" id="2ud-SV-OQp"/>
                                                             <constraint firstItem="gpd-bC-1qF" firstAttribute="leading" secondItem="BMa-an-Fcf" secondAttribute="leading" constant="4" id="Fdb-FB-ymK"/>
@@ -345,9 +354,12 @@
                                                                         <integer key="value" value="10"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="cancelFilterAC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uBF-zJ-FOG"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.67806583840577273" green="0.78432357893952775" blue="0.82023007107764179" alpha="0.21757579985119047" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="backgroundColor" red="0.67843137254901964" green="0.78431372549019607" blue="0.81960784313725488" alpha="0.27326228342899661" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="Vzs-x4-FbV" secondAttribute="trailing" constant="4" id="1we-SS-DlI"/>
                                                             <constraint firstAttribute="trailing" secondItem="Gk2-Fo-VLL" secondAttribute="trailing" id="2Md-oE-t6e"/>
@@ -619,10 +631,18 @@
                     <connections>
                         <outlet property="calendarButton" destination="acs-wg-sTv" id="xnd-A0-yyn"/>
                         <outlet property="calendarView" destination="qll-Dl-BUB" id="sjn-kq-efR"/>
+                        <outlet property="cancelNumLabel" destination="Ffm-3U-ZgA" id="Lep-wi-Zcs"/>
+                        <outlet property="cancelView" destination="XPc-cI-Uha" id="X6z-Yu-1um"/>
                         <outlet property="collectionView" destination="kgw-Fu-8bk" id="juX-mP-noX"/>
+                        <outlet property="completedNumLabel" destination="Ul0-0v-Amb" id="kj1-Nf-ESr"/>
+                        <outlet property="completedView" destination="BMa-an-Fcf" id="X2v-pd-mU5"/>
                         <outlet property="monthLabel" destination="17U-3R-dSl" id="CfV-az-6ch"/>
+                        <outlet property="processingNumLabel" destination="uoT-qK-Rza" id="D9i-TJ-hDF"/>
+                        <outlet property="processingView" destination="XXV-3h-7qP" id="HI0-9X-0TZ"/>
                         <outlet property="seeAllButton" destination="Uuo-tl-Z5w" id="0ip-JW-LYb"/>
                         <outlet property="tableView" destination="qUJ-53-47m" id="BPe-wv-5vT"/>
+                        <outlet property="todoNumLabel" destination="xnp-9i-par" id="tTI-XA-2Ld"/>
+                        <outlet property="todoView" destination="Lqe-uG-UzE" id="byC-U8-CW6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

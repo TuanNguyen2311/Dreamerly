@@ -44,7 +44,7 @@ extension String  {
     }
 }
 extension Date {
-    func toString(_ dateFormat:String)->String{
+    func toString(_ dateFormat:String=Constants.dateFormatted_1)->String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = dateFormat
         return dateFormatter.string(from: self)
