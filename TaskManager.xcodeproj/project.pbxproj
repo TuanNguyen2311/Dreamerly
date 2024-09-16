@@ -13,6 +13,8 @@
 		418EB9AD2C9688C400DC552D /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418EB9AB2C9688C400DC552D /* TaskTableViewCell.swift */; };
 		418EB9AE2C9688C400DC552D /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 418EB9AC2C9688C400DC552D /* TaskTableViewCell.xib */; };
 		418EB9B02C96C4D500DC552D /* GlobalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418EB9AF2C96C4D500DC552D /* GlobalManager.swift */; };
+		419211E02C97EC1A000E7D9F /* DGCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 419211DD2C97EBD4000E7D9F /* DGCharts.framework */; };
+		419211E12C97EC1A000E7D9F /* DGCharts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 419211DD2C97EBD4000E7D9F /* DGCharts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		41AB8D982C947B5D0005C839 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB8D972C947B5D0005C839 /* TaskListViewController.swift */; };
 		41AB8DA02C9496330005C839 /* ProjectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB8D9E2C9496330005C839 /* ProjectViewCell.swift */; };
 		41AB8DA12C9496330005C839 /* ProjectViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41AB8D9F2C9496330005C839 /* ProjectViewCell.xib */; };
@@ -37,6 +39,23 @@
 		41C568A02C90948D0071D8F5 /* ProjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C5689F2C90948D0071D8F5 /* ProjectManager.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		419211DC2C97EBD4000E7D9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 419211D72C97EBD4000E7D9F /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65AD9E95D9ED4DC0BD73A743;
+			remoteInfo = DGCharts;
+		};
+		419211DE2C97EBD4000E7D9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 419211D72C97EBD4000E7D9F /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1CBBC58C6CE1EBEE9852CE41;
+			remoteInfo = DGChartsTests;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		4135FBB22C97407B001AE156 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -44,6 +63,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				419211E12C97EC1A000E7D9F /* DGCharts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -58,6 +78,7 @@
 		418EB9AB2C9688C400DC552D /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		418EB9AC2C9688C400DC552D /* TaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
 		418EB9AF2C96C4D500DC552D /* GlobalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalManager.swift; sourceTree = "<group>"; };
+		419211D72C97EBD4000E7D9F /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		41AB8D972C947B5D0005C839 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		41AB8D9E2C9496330005C839 /* ProjectViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewCell.swift; sourceTree = "<group>"; };
 		41AB8D9F2C9496330005C839 /* ProjectViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectViewCell.xib; sourceTree = "<group>"; };
@@ -89,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				419211E02C97EC1A000E7D9F /* DGCharts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +123,15 @@
 				4135FBAB2C973C2B001AE156 /* Charts.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		419211D82C97EBD4000E7D9F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				419211DD2C97EBD4000E7D9F /* DGCharts.framework */,
+				419211DF2C97EBD4000E7D9F /* DGChartsTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		41AB8D992C9493940005C839 /* ViewCell */ = {
@@ -144,6 +175,7 @@
 		41C568732C907B180071D8F5 = {
 			isa = PBXGroup;
 			children = (
+				419211D72C97EBD4000E7D9F /* Charts.xcodeproj */,
 				41C5687E2C907B180071D8F5 /* TaskManager */,
 				41C5687D2C907B180071D8F5 /* Products */,
 				4135FBAA2C973C2A001AE156 /* Frameworks */,
@@ -248,12 +280,35 @@
 			);
 			productRefGroup = 41C5687D2C907B180071D8F5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 419211D82C97EBD4000E7D9F /* Products */;
+					ProjectRef = 419211D72C97EBD4000E7D9F /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				41C5687B2C907B180071D8F5 /* TaskManager */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		419211DD2C97EBD4000E7D9F /* DGCharts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DGCharts.framework;
+			remoteRef = 419211DC2C97EBD4000E7D9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		419211DF2C97EBD4000E7D9F /* DGChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DGChartsTests.xctest;
+			remoteRef = 419211DE2C97EBD4000E7D9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		41C5687A2C907B180071D8F5 /* Resources */ = {
@@ -457,6 +512,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -485,6 +541,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

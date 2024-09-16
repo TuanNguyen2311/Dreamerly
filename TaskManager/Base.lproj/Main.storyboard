@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VoP-bc-Kpb">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -34,7 +35,7 @@
                                             <constraint firstAttribute="height" constant="40" id="Ir3-nF-AEX"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain">
+                                        <buttonConfiguration key="configuration" style="plain" title=" ">
                                             <imageReference key="image" image="calendar" catalog="system" symbolScale="large"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                         </buttonConfiguration>
@@ -120,7 +121,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7b1-oW-GRa">
                                                                 <rect key="frame" x="0.0" y="0.0" width="152" height="50"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title=" "/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                         <integer key="value" value="10"/>
@@ -196,7 +197,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDb-sx-W5B">
                                                                 <rect key="frame" x="0.0" y="0.0" width="107" height="50"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title=" "/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                         <integer key="value" value="10"/>
@@ -272,7 +273,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEl-9e-gqo">
                                                                 <rect key="frame" x="0.0" y="0.0" width="152" height="50"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title=" "/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                         <integer key="value" value="10"/>
@@ -348,7 +349,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gk2-Fo-VLL">
                                                                 <rect key="frame" x="0.0" y="0.0" width="122" height="50"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title=" "/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                         <integer key="value" value="10"/>
@@ -434,7 +435,7 @@
                                             <constraint firstAttribute="width" constant="40" id="pRm-jW-vaw"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="arrowtriangle.backward" catalog="system"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="arrowtriangle.backward" catalog="system" title=" "/>
                                         <connections>
                                             <action selector="previousMonthAC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6rd-q3-Gbo"/>
                                         </connections>
@@ -446,7 +447,7 @@
                                             <constraint firstAttribute="height" constant="40" id="kAd-mJ-cZ2"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="arrowtriangle.forward" catalog="system"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="arrowtriangle.forward" catalog="system" title=" "/>
                                         <connections>
                                             <action selector="nextMonthAC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="swY-K2-oIX"/>
                                         </connections>
@@ -576,7 +577,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rbf-dO-zdJ">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain"/>
+                                        <buttonConfiguration key="configuration" style="plain" title=" "/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="40"/>
@@ -657,25 +658,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSX-xQ-9X1" customClass="PieChartView" customModule="DGCharts">
-                                <rect key="frame" x="8" y="284.66666666666663" width="377" height="282.66666666666663"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VEc-bE-rBy" customClass="BarChartView" customModule="DGCharts">
+                                <rect key="frame" x="8" y="237.66666666666663" width="377" height="377"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="lSX-xQ-9X1" secondAttribute="height" multiplier="4:3" id="t8A-bS-4dg"/>
+                                    <constraint firstAttribute="width" secondItem="VEc-bE-rBy" secondAttribute="height" id="loE-2j-agg"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dreamerly" translatesAutoresizingMaskIntoConstraints="NO" id="9Sv-bb-jn6">
+                                <rect key="frame" x="20" y="79" width="353" height="80"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JSc-Bd-Iy5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="lSX-xQ-9X1" firstAttribute="leading" secondItem="JSc-Bd-Iy5" secondAttribute="leading" constant="8" id="4OC-dn-b8t"/>
-                            <constraint firstItem="lSX-xQ-9X1" firstAttribute="centerY" secondItem="CcM-hy-Gxl" secondAttribute="centerY" id="8Am-lQ-p21"/>
-                            <constraint firstItem="JSc-Bd-Iy5" firstAttribute="trailing" secondItem="lSX-xQ-9X1" secondAttribute="trailing" constant="8" id="SDs-Se-XVs"/>
+                            <constraint firstItem="9Sv-bb-jn6" firstAttribute="top" secondItem="JSc-Bd-Iy5" secondAttribute="top" constant="20" id="9dR-Yl-hbU"/>
+                            <constraint firstItem="VEc-bE-rBy" firstAttribute="width" secondItem="VEc-bE-rBy" secondAttribute="height" id="A8G-So-6AZ"/>
+                            <constraint firstItem="JSc-Bd-Iy5" firstAttribute="trailing" secondItem="VEc-bE-rBy" secondAttribute="trailing" constant="8" id="J4X-mc-jZe"/>
+                            <constraint firstItem="VEc-bE-rBy" firstAttribute="centerY" secondItem="CcM-hy-Gxl" secondAttribute="centerY" id="JP1-VL-GKB"/>
+                            <constraint firstItem="VEc-bE-rBy" firstAttribute="leading" secondItem="JSc-Bd-Iy5" secondAttribute="leading" constant="8" id="b7P-qx-lPP"/>
+                            <constraint firstItem="JSc-Bd-Iy5" firstAttribute="trailing" secondItem="9Sv-bb-jn6" secondAttribute="trailing" constant="20" id="kLR-NR-tCF"/>
+                            <constraint firstItem="9Sv-bb-jn6" firstAttribute="centerX" secondItem="CcM-hy-Gxl" secondAttribute="centerX" id="ro9-wq-CSb"/>
+                            <constraint firstItem="9Sv-bb-jn6" firstAttribute="leading" secondItem="JSc-Bd-Iy5" secondAttribute="leading" constant="20" id="wbc-oE-nKa"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Biểu đồ" image="chart.xyaxis.line" catalog="system" id="5tw-qn-rym"/>
                     <connections>
-                        <outlet property="pieChartView" destination="lSX-xQ-9X1" id="JHL-5C-Piv"/>
+                        <outlet property="barChartView" destination="VEc-bE-rBy" id="nrD-P1-RQK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHj-vr-NPx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -727,6 +736,7 @@
         <image name="arrowtriangle.forward" catalog="system" width="128" height="113"/>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="chart.xyaxis.line" catalog="system" width="128" height="102"/>
+        <image name="dreamerly" width="360" height="80"/>
         <image name="pencil.and.list.clipboard" catalog="system" width="114" height="128"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="linkColor">
